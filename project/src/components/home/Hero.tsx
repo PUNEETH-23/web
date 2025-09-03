@@ -1,76 +1,66 @@
 import React from 'react';
-import { Truck, Award, Clock, Users } from 'lucide-react';
-import Container from '../common/Container';
-import { companyInfo } from '../../data/companyData';
-import crusherImage from '../../assets/IMG-20250603-WA0011.jpg';
+import { Link } from 'react-router-dom';
+import Button from '../common/Button';
+import heroBg from '../../assets/WhatsApp Image 2025-06-03 at 12.25.40_6c230baf.jpg';
 
-const AboutSection: React.FC = () => {
+const Hero: React.FC = () => {
   return (
-    <section className="py-16 bg-white">
-      <Container maxWidth="full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Image Side */}
-          <div className="relative">
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-600 opacity-30 rounded-lg"></div>
-            <img 
-              src={crusherImage} 
-              alt="Stone Crusher Operations" 
-              className="rounded-lg shadow-xl w-full h-auto object-cover relative z-10"
-              style={{ maxHeight: '500px' }}
-            />
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 opacity-30 rounded-lg"></div>
-          </div>
-          
-          {/* Content Side */}
-          <div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">About Puneeth <span className="text-blue-600">Stone Crushers</span></h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              {companyInfo.description}
-            </p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
-              <FeatureCard 
-                icon={<Award className="h-8 w-8 text-blue-600" />}
-                title="Quality Products"
-                description="All our stone materials undergo rigorous quality checks"
-              />
-              <FeatureCard 
-                icon={<Truck className="h-8 w-8 text-blue-600" />}
-                title="Reliable Delivery"
-                description="On-time delivery to your construction site"
-              />
-              <FeatureCard 
-                icon={<Clock className="h-8 w-8 text-blue-600" />}
-                title="5+ years of Experience"
-                description="Expertise in the stone crushing industry"
-              />
-              <FeatureCard 
-                icon={<Users className="h-8 w-8 text-blue-600" />}
-                title="Expert Team"
-                description="Skilled professionals dedicated to customer satisfaction"
-              />
-            </div>
+    <div className="relative h-screen">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `url(${heroBg})`,
+          backgroundPosition: 'center 20%',
+        }}
+      >
+        {/* Decorative Overlay */}
+        <div className="absolute inset-0 bg-black/50 mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60"></div>
+      </div>
+
+      {/* Content */}
+      <div className="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-6 lg:px-8">
+        <div>
+          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight text-white mb-6">
+            Puneeth Stone Crushers
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-8 font-body">
+            Delivering top-quality stone materials for construction, landscaping, and sacred spaces. Trust our expertise and experience for reliable and superior stone solutions.
+          </p>
+
+          {/* Call to Actions */}
+          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+            <Link to="/materials">
+              <Button 
+                size="lg" 
+                className="min-w-40 bg-primary-400 hover:bg-primary-500 text-gray-900 font-semibold shadow-lg transform transition hover:scale-105"
+              >
+                Explore Materials
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="min-w-40 border-2 border-primary-200 text-primary-200 hover:bg-primary-200 hover:text-gray-900 shadow-lg transform transition hover:scale-105"
+              >
+                Contact Us
+              </Button>
+            </Link>
           </div>
         </div>
-      </Container>
-    </section>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+        <span className="text-primary-200 text-sm mb-2 font-body">Scroll Down</span>
+        <div className="w-6 h-10 border-2 border-primary-200 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-primary-200 rounded-full mt-2 animate-bounce"></div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-interface FeatureCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
-
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
-  <div className="flex items-start p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
-    <div className="mr-4">{icon}</div>
-    <div>
-      <h3 className="font-semibold text-gray-800 mb-1">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
-    </div>
-  </div>
-);
-
-export default AboutSection;
+export default Hero;
