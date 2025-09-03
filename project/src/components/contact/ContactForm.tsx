@@ -8,7 +8,7 @@ const App: React.FC = () => {
     const body = encodeURIComponent('Hello, I would like to get in touch with you.');
     
     // The recipient email address.
-    const toEmail = 'recipient@example.com';
+    const toEmail = 'muddappa.mk@gmail.com';
     
     const gmailLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=${toEmail}&su=${subject}&body=${body}`;
     
