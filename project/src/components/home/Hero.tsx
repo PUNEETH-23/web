@@ -3,6 +3,7 @@ import { Truck, Award, Clock, Users, CheckCircle } from 'lucide-react';
 import Container from '../common/Container';
 import { companyInfo } from '../../data/companyData';
 import crusherImage from '../../assets/IMG-20250603-WA0011.jpg';
+import backgroundImage from '../../assets/WhatsApp Image 2025-06-03 at 12.25.40_6c230baf.jpg';
 
 const AboutSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,24 +23,37 @@ const AboutSection: React.FC = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+      observer.disconnect();
+    };
   }, []);
 
   const highlights = [
-    "Premium quality stone materials",
-    "State-of-the-art crushing technology",
-    "Environmentally conscious operations",
-    "Competitive pricing structure"
+    'Premium quality stone materials',
+    'State-of-the-art crushing technology',
+    'Environmentally conscious operations',
+    'Competitive pricing structure',
   ];
 
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
     >
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+        }}
+      />
+      
       {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-blue-100 rounded-full -translate-y-36 translate-x-36 opacity-20"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full translate-y-48 -translate-x-48 opacity-15"></div>
+      <div className="absolute top-0 right-0 w-72 h-72 bg-blue-100 rounded-full -translate-y-36 translate-x-36 opacity-10"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full translate-y-48 -translate-x-48 opacity-10"></div>
       
       <Container maxWidth="full">
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -98,7 +112,7 @@ const AboutSection: React.FC = () => {
                 {highlights.map((highlight, index) => (
                   <div 
                     key={index}
-                    className={`flex items-center gap-3 transition-all duration-500 delay-${(index + 1) * 100} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+                    className={`flex items-center gap-3 transition-all duration-500 ${['delay-100', 'delay-200', 'delay-300', 'delay-400'][index]} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
                   >
                     <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
                     <span className="text-gray-700 text-sm">{highlight}</span>
