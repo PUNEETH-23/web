@@ -2,6 +2,7 @@ import React from 'react';
 import { Truck, Award, Clock, Users } from 'lucide-react';
 import Container from '../common/Container';
 import { companyInfo } from '../../data/companyData';
+import crusherImage from '../../assets/IMG-20250603-WA0011.jpg';
 
 const AboutSection: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ const AboutSection: React.FC = () => {
           <div className="relative">
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-600 opacity-30 rounded-lg"></div>
             <img 
-              src="src/assets/IMG-20250603-WA0011.jpg" 
+              src={crusherImage} 
               alt="Stone Crusher Operations" 
               className="rounded-lg shadow-xl w-full h-auto object-cover relative z-10"
               style={{ maxHeight: '500px' }}
