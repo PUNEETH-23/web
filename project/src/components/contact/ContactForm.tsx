@@ -101,8 +101,7 @@ const App: React.FC = () => {
 
     setIsSubmitting(true);
 
-    // This simulates a mailto link submission.
-    // In a real-world application, this would be an API call to a backend.
+    // This simulates a redirect to a Gmail compose window.
     const subject = encodeURIComponent(
       `Inquiry about ${formData.materialInterest || 'Materials'}`
     );
@@ -118,8 +117,9 @@ const App: React.FC = () => {
       `Message:\n${formData.message}`
     );
 
-    const mailtoLink = `mailto:muddappa.mk@gmail.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoLink;
+    // Construct the URL to redirect to Gmail with pre-filled fields.
+    const gmailLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=muddappa.mk@gmail.com&su=${subject}&body=${body}`;
+    window.location.href = gmailLink;
 
     setIsSubmitting(false);
     setIsSubmitted(true);
@@ -333,7 +333,7 @@ const App: React.FC = () => {
               <h3 className="mt-5 text-2xl font-semibold text-gray-900">Thank You!</h3>
               <div className="mt-3">
                 <p className="text-gray-500">
-                  Your email client should open shortly. Please send the message from there. We'll be in touch as soon as possible.
+                  Your Gmail window should open shortly. Please send the pre-filled message from there. We'll be in touch as soon as possible.
                 </p>
               </div>
             </div>
