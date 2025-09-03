@@ -9,8 +9,12 @@ const ContactForm: React.FC = () => {
     email: '',
     phone: '',
     message: '',
-    materialInterest: ''
+    materialInterest: '',
+    urgency: '',
+    contactMethod: '',
+    quantity: ''
   });
+
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -54,11 +58,15 @@ const ContactForm: React.FC = () => {
     const subject = encodeURIComponent(
       `Inquiry about ${formData.materialInterest || 'Materials'}`
     );
+
     const body = encodeURIComponent(
       `Name: ${formData.name}\n` +
       `Email: ${formData.email}\n` +
       `Phone: ${formData.phone}\n` +
-      `Material of Interest: ${formData.materialInterest}\n\n` +
+      `Material of Interest: ${formData.materialInterest}\n` +
+      `Quantity: ${formData.quantity}\n` +
+      `Project Urgency: ${formData.urgency}\n` +
+      `Preferred Contact: ${formData.contactMethod}\n\n` +
       `Message:\n${formData.message}`
     );
 
@@ -76,7 +84,10 @@ const ContactForm: React.FC = () => {
       email: '',
       phone: '',
       message: '',
-      materialInterest: ''
+      materialInterest: '',
+      urgency: '',
+      contactMethod: '',
+      quantity: ''
     });
 
     setTimeout(() => setIsSubmitted(false), 5000);
@@ -84,7 +95,9 @@ const ContactForm: React.FC = () => {
 
   return (
     <div className="bg-blue-50 rounded-lg shadow-lg p-6 md:p-8">
-      <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Us</h3>
+      <h3 className="text-2xl font-bold text-gray-800 mb-6">
+        Have Questions or Need a Quote? Reach Out Today!
+      </h3>
 
       {isSubmitted && (
         <div className="bg-green-50 border border-green-200 rounded-md p-4 mb-6 flex items-start">
@@ -177,6 +190,59 @@ const ContactForm: React.FC = () => {
                 <option key={mat.id} value={mat.name}>{mat.name}</option>
               ))}
             </select>
+            {formData.materialInterest && (
+              <p className="text-gray-600 mt-1 text-sm">
+                {materials.find(m => m.name === formData.materialInterest)?.description}
+              </p>
+            )}
+          </div>
+
+          {/* Urgency */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Project Urgency</label>
+            <select
+              name="urgency"
+              value={formData.urgency}
+              onChange={handleChange}
+              className="w-full rounded-md border border-gray-300 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">Select urgency (optional)</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+
+          {/* Preferred Contact Method */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Contact</label>
+            <div className="flex gap-4 mt-1">
+              {['Email', 'Phone', 'WhatsApp'].map(method => (
+                <label key={method} className="flex items-center gap-1">
+                  <input
+                    type="radio"
+                    name="contactMethod"
+                    value={method}
+                    checked={formData.contactMethod === method}
+                    onChange={handleChange}
+                  />
+                  {method}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Quantity */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Estimated Quantity</label>
+            <input
+              type="number"
+              name="quantity"
+              value={formData.quantity}
+              onChange={handleChange}
+              placeholder="Enter quantity (optional)"
+              className="w-full rounded-md border border-gray-300 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
           </div>
         </div>
 
