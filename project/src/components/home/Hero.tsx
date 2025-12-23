@@ -25,8 +25,10 @@ const Hero: React.FC = () => {
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight text-white mb-6">
             Puneeth Stone Crushers
           </h1>
+
           <p className="mt-6 text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-8 font-body">
-            Delivering top-quality stone materials for construction, landscaping, and sacred spaces. Trust our expertise and experience for reliable and superior stone solutions.
+            Delivering top-quality stone materials for construction, landscaping, and sacred spaces. 
+            Trust our expertise and experience for reliable and superior stone solutions.
           </p>
 
           {/* Call to Actions */}
@@ -39,6 +41,7 @@ const Hero: React.FC = () => {
                 Explore Materials
               </Button>
             </Link>
+
             <Link to="/contact">
               <Button 
                 variant="outline" 
@@ -52,8 +55,8 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      
+      {/* Scroll Indicator (optional, add later) */}
+    </div>
   );
 };
 
