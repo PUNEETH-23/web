@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../common/Button';
+import Button from '../common/Button.tsx';
 import heroBg from '../../assets/WhatsApp Image 2025-06-03 at 12.25.40_6c230baf.jpg';
 
 const Hero: React.FC = () => {
